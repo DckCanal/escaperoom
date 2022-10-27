@@ -13,7 +13,8 @@ import { styled } from "@mui/material/styles";
 export default function Home() {
   const [secret, setSecret] = React.useState("");
   const secretKey = "claudio";
-  const indizio = "Cerca nel posto giusto";
+  const indizio = process.env.NEXT_PUBLIC_INDIZIO;
+  console.log(secretKey, indizio);
 
   const SubmitButton = styled(Button)({
     backgroundColor: "#f29f05",
@@ -66,6 +67,7 @@ export default function Home() {
             const input = data.get("secretInput").trim().toLowerCase();
             setSecret(input);
           }}
+          noValidate
           m={2}
           sx={{
             display: "flex",
@@ -81,12 +83,7 @@ export default function Home() {
               flex: 10,
             }}
           ></TextField>
-          <SubmitButton
-            type="submit"
-            variant="contained"
-            sx={{ flex: 2 }}
-            backgroundColor="#f29f05"
-          >
+          <SubmitButton type="submit" variant="contained" sx={{ flex: 2 }}>
             OK
           </SubmitButton>
         </Box>
